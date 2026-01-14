@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>EV Company Dashboard</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<nav>
+  <h2>⚡ EV ChargeMap Admin</h2>
+  <a href="/">Driver View</a>
+</nav>
+
+<section class="hero">
+  <h1>Company Analytics Dashboard</h1>
+  <p>Station performance, AI insights & expansion planning</p>
+</section>
+
+<!-- Summary Cards -->
+<div class="cards" id="data"></div>
+
+<!-- Charts -->
+<div class="charts">
+  <div>
+    <h3 style="text-align:center;">Daily Usage</h3>
+    <canvas id="usageChart"></canvas>
+  </div>
+
+  <div>
+    <h3 style="text-align:center;">Revenue</h3>
+    <canvas id="revenueChart"></canvas>
+  </div>
+</div>
+
+<!-- Business Insights -->
+<div class="insights" id="insights"></div>
+
+<!-- AI Predictions -->
+<div class="ai-box" id="ai"></div>
+
+<script>
+/* Summary Cards */
+fetch("/admin-data")
+  .then(res => res.json())
+  .then(data => {
+    document.getElementById("data").innerHTML = `
+      <div class="card">Total Stations<br><b>${data.total_stations}</b></div>
+      <div class="card">Needs Repair<br><b>${data.repair_needed}</b></div>
+      <div class="card">Most Used<br><b>${data.most_used}</b></div>
+      <div class="card">Revenue<br><b>₹${data.total_revenue}</b></div>
+    `;
+  });
+
+/* Charts */
+fetch("/analytics")
+  .then(res => res.json())
+  .then(data => {
+    const names = data.map(s => s.name);
+
+    new Chart(document.getElementById("usageChart"), {
+      type: "bar",
+      data: {
+        labels: names,
+        datasets: [{
+          label: "Daily Users",
+          data: data.map(s => s.daily_users)
+        }]
+      }
+    });
+
+    new Chart(document.getElementById("revenueChart"), {
+      type: "line",
+      data: {
+        labels: names,
+        datasets: [{
+          label: "Revenue",
+          data: data.map(s => s.revenue)
+        }]
+      }
+    });
+  });
+
+/* Repair & Upgrade Insights */
+fetch("/insights")
+  .then(res => res.json())
+  .then(data => {
+    let html = "<h3>🚨 Stations Needing Repair</h3>";
+    data.repair_stations.forEach(s => html += `<p>${s.name}</p>`);
+
+    html += "<h3>📈 High Demand – Needs Upgrade</h3>";
+    data.upgrade_stations.forEach(s => 
+      html += `<p>${s.name} (${s.daily_users} users/day)</p>`
+    );
+
+    document.getElementById("insights").innerHTML = html;
+  });
+
+/* AI Demand Prediction */
+fetch("/predict-demand")
+  .then(res => res.json())
+  .then(data => {
+    let html = "<h3>🤖 AI Demand Prediction</h3>";
+    data.forEach(s => {
+      html += `<p>${s.name}: <b>${s.predicted_users} users/day</b></p>`;
+    });
+    document.getElementById("ai").innerHTML = html;
+  });
+</script>
+
+</body>
+</html>
