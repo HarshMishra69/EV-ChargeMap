@@ -1,39 +1,58 @@
-# ⚡ EV ChargeMap
+# ⚡ EV ChargeMap – EV Charging Station Tracker
 
-EV ChargeMap is a web app to help users find EV charging stations and help admins manage stations using data and AI.
+A smart EV Charging Station Tracking System built using **Flask, MySQL, Leaflet, and AI-based demand prediction**.
 
-## 🚀 Features
+---
 
-- Map view for drivers  
-- Admin dashboard  
-- Login system  
-- Analytics  
-- AI demand prediction  
+## 🚗 Features
 
-## 🛠 Tech Used
+- Live map with EV station markers  
+- Driver view for nearby stations  
+- Secure login system  
+- Admin dashboard with analytics  
+- AI-based demand prediction  
+- Business insights for expansion  
 
-- Python (Flask)  
-- MySQL  
-- HTML, CSS, JavaScript  
-- Machine Learning  
+---
 
-## 📸 Screenshots
+## 🏠 Home Page (Driver View)
 
-### Home Page
-![Home](screenshots/home.png)
+![Home](screenshots/driver_view.png.png)
 
-### Login Page
+---
+
+## 🔐 Login Page
+
 ![Login](screenshots/login.png)
 
-### Admin Dashboard
-![Admin](screenshots/admin.png)
+---
 
-### Analytics
-![Analytics](screenshots/analytics.png)
+## 📊 Admin Dashboard
 
-## ⚙️ How to Run
+![Admin](screenshots/Screenshot%202026-01-15%20at%206.31.47%20PM.png)
+
+---
+
+## 📈 Analytics & Insights
+
+![Analytics](screenshots/Analytics.png.png)
+
+---
+
+## 🛠️ Tech Stack
+
+- Frontend: HTML, CSS, JavaScript, Leaflet  
+- Backend: Flask (Python)  
+- Database: MySQL  
+- AI/ML: Scikit-learn  
+- Deployment: Localhost  
+
+---
+
+## ▶️ How to Run Locally
 
 ```bash
 git clone https://github.com/HarshMishra69/EV-ChargeMap.git
-cd EV-ChargeMap/backend
+cd EV-ChargeMap
+pip install -r requirements.txt
 python app.py
