@@ -1,12 +1,12 @@
 # ⚡ EV ChargeMap – EV Charging Station Tracker
 
-A smart EV Charging Station Tracking System built using **Flask, MySQL, Leaflet, and AI-based demand prediction**.
+A smart EV Charging Station Tracking System built using **Flask, MySQL, Leaflet, and AI-based Demand Prediction**.
 
 ---
 
 ## 🚗 Features
 
-- Live map with EV station markers  
+- Live EV station map  
 - Driver view for nearby stations  
 - Secure login system  
 - Admin dashboard with analytics  
@@ -17,7 +17,7 @@ A smart EV Charging Station Tracking System built using **Flask, MySQL, Leaflet,
 
 ## 🏠 Home Page (Driver View)
 
-![Home](screenshots/driver_view.png.png)
+![Home](screenshots/driver_view.png)
 
 ---
 
@@ -27,15 +27,15 @@ A smart EV Charging Station Tracking System built using **Flask, MySQL, Leaflet,
 
 ---
 
-## 📊 Admin Dashboard
+## 🛠️ Admin Dashboard
 
-![Admin](screenshots/Screenshot%202026-01-15%20at%206.31.47%20PM.png)
+![Admin](screenshots/Admin.png)
 
 ---
 
-## 📈 Analytics & Insights
+## 📊 Analytics & Insights
 
-![Analytics](screenshots/Analyticspng.png)
+![Analytics](screenshots/Analytics.png)
 
 ---
 
@@ -45,7 +45,6 @@ A smart EV Charging Station Tracking System built using **Flask, MySQL, Leaflet,
 - Backend: Flask (Python)  
 - Database: MySQL  
 - AI/ML: Scikit-learn  
-- Deployment: Localhost  
 
 ---
 
