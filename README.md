@@ -35,7 +35,7 @@ A smart EV Charging Station Tracking System built using **Flask, MySQL, Leaflet,
 
 ## 📈 Analytics & Insights
 
-![Analytics](screenshots/Analytics.png.png)
+![Analytics](screenshots/Analyticspng.png)
 
 ---
 
