@@ -1,7 +1,6 @@
 from flask import Flask, jsonify, render_template, request, redirect, session
 from flask_cors import CORS
 import mysql.connector
-import os
 import pickle
 
 model = pickle.load(open("model.pkl", "rb"))
@@ -10,14 +9,14 @@ app = Flask(__name__)
 CORS(app)
 app.secret_key = "ev_secret"
 
-# Always get a fresh DB connection (Railway)
+# Local MySQL connection
 def get_db():
     return mysql.connector.connect(
-        host=os.getenv("MYSQLHOST"),
-        user=os.getenv("MYSQLUSER"),
-        password=os.getenv("MYSQLPASSWORD"),
-        database=os.getenv("MYSQLDATABASE"),
-        port=os.getenv("MYSQLPORT")
+        host="localhost",
+        user="root",
+        password="Harsh8340",   # your local MySQL password
+        database="ev_chargemap",
+        port=3306
     )
 
 # Driver View
@@ -56,7 +55,7 @@ def admin_page():
         return redirect("/login")
     return render_template("admin.html")
 
-# Stations API (Map)
+# Stations API
 @app.route("/stations")
 def stations():
     db = get_db()
@@ -64,7 +63,7 @@ def stations():
     cursor.execute("SELECT * FROM stations")
     return jsonify(cursor.fetchall())
 
-# Charts API
+# Analytics API
 @app.route("/analytics")
 def analytics():
     db = get_db()
@@ -92,7 +91,7 @@ def predict_demand():
 
     return jsonify(predictions)
 
-# Summary Cards
+# Admin Summary Cards
 @app.route("/admin-data")
 def admin_data():
     db = get_db()
@@ -139,4 +138,4 @@ def insights():
     })
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    app.run(debug=True)
